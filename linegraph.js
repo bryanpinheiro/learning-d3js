@@ -16,7 +16,7 @@ const y = d3.scaleLinear().range([height, 0]);
 
 // Create the SVG container.
 const svg = d3
-  .select("#linegraph-container")
+  .select("#line-graph-container")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -35,7 +35,7 @@ d3.csv("./data/jdi_data_daily.csv").then(function (data) {
     d.population = +d.population;
   });
 
-  console.log("data: ", data);
+  console.log("population data: ", data);
 
   // Declare the x and y domains.
   x.domain(d3.extent(data, (d) => d.date));
@@ -134,7 +134,11 @@ d3.csv("./data/jdi_data_daily.csv").then(function (data) {
   const listeningRect = svg
     .append("rect")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .style('pointer-events', 'all')  
+    .style('fill-opacity', 0)        
+    .style('stroke-opacity', 0)      
+    .style('z-index', 1);            
 
   // create the mouse move function
   listeningRect.on("mousemove", function (event) {
@@ -157,8 +161,8 @@ d3.csv("./data/jdi_data_daily.csv").then(function (data) {
     // add in  our tooltip
     tooltip
       .style("display", "block")
-      .style("left", `${xPos + 100}px`)
-      .style("top", `${yPos + 170}px`)
+      .style("left", `${xPos + 175}px`)
+      .style("top", `${yPos + 250}px`)
       .html(
         `<strong>Date:</strong> ${d.date.toLocaleDateString()}<br><strong>Population:</strong> ${
           d.population !== undefined

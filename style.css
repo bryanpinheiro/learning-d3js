@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 0 5rem 0;
   font-family: 'Lato', sans-serif;
 }
 
@@ -8,11 +8,13 @@ h1, h2 {
   padding-left: 3rem;
 }
 
-rect {
-  pointer-events: all;
-  fill-opacity: 0;
-  stroke-opacity: 0;
-  z-index: 1;
+h2 {
+  padding-top: 5rem;
+}
+
+div {
+  display: flex;
+  justify-content: center;
 }
 
 .tooltip {
